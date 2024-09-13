@@ -11,7 +11,6 @@ function solve(arr, target) {
             sum += arr[j]
             
             if(sum == target) {
-                console.log('worked')
                 return [i, j]
             }
 
