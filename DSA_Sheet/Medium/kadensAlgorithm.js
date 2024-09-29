@@ -48,7 +48,7 @@ function kadensAlgorithm(arr) {
 
 
 let driverArr = [1,2,3,-2,5]
-driverArr = [-1,-2,-3,-4]
+// driverArr = [-1,-2,-3,-4]
 const res = kadensAlgorithm(driverArr)
 
 console.log(res)
