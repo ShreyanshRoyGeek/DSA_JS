@@ -46,6 +46,8 @@ function solve(nums, index, output, resArr) {
 
 
 let nums = [1, 2, 3]
+// let nums = 'abcd'
+// nums = nums.split('')
 
 let resArr = []
 let output = []
@@ -132,8 +134,8 @@ function findSubsetGFG() {
 
 
 // Example usage
-const arr = [1, 2, 3];
-const res = findSubsets(arr, index=0, currentSubset = [], resArr = []);
-console.log('res', res)
+// const arr = [1, 2, 3];
+// const res = findSubsets(arr, index=0, currentSubset = [], resArr = []);
+// console.log('res', res)
 
 

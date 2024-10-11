@@ -19,6 +19,8 @@ function printBinaryToDecimal(binaryNum) {
 
 }
 
+
+
 function printDecimalToBinary(decimalNum) {
 
     let binary = 0
@@ -37,6 +39,7 @@ function printDecimalToBinary(decimalNum) {
 
     console.log("binary equivalent is ", binary)
 }
+
 
    
 function decimalToBinary(N) { 
