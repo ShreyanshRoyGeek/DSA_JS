@@ -7,7 +7,6 @@ function reverseAnArray(arr) {
 
     while(start <= end){
         
-        
         if(start == end){
             console.log("Reversed array", arr)
             return 1
@@ -22,10 +21,6 @@ function reverseAnArray(arr) {
         start++, end--
         
     }
-
-    // for(let i=start; i<=end; i++) {
-    //     for(let j=1; j)
-    // }
 
     console.log("Reversed array", arr)
 
