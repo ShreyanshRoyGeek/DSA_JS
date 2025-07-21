@@ -25,7 +25,7 @@
 */
 
 
-function findMaxProductSubArray(arr) {
+function findMaxProductSubArray(arr) { // 0(n^2)
 
     let res = 0
 
@@ -40,6 +40,28 @@ function findMaxProductSubArray(arr) {
 
     return res
 }
+
+function findMaxProductSubArrayOptimal(arr) {
+
+    let leftProd = 1
+    let rightProd = 1
+    let ans = 0
+
+    for(let i=0; i<arr.length; i++) {
+
+        leftProd = leftProd == 0 ? 1 : leftProd
+        rightProd = rightProd == 0 ? 1 : rightProd
+
+        // prefix product
+        leftProd *= arr[i]
+        // suffix product
+        rightProd *= arr[arr.length-1 -i]
+
+        ans = Math.max(ans, Math.max(leftProd, rightProd))
+    }
+    return ans
+}
+
 
 
 function findAllPossibleSubArray(arr) {
@@ -65,5 +87,5 @@ function findAllPossibleSubArray(arr) {
 
 let arr = [-2, 6, -3, -10, 0, 2]
 // const res = findMaxProductSubArray(arr)
-const res = findMaxProductSubArray(arr)
+const res = findMaxProductSubArrayOptimal(arr)
 console.log(res)
