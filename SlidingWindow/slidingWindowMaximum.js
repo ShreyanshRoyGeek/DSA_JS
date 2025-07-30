@@ -38,13 +38,31 @@ function getSlidingWindowMax(arr, k) {
         res.push(max)
     }
     return res
+}
 
+
+function maxOfSubarrays(arr, k) { // 0(n*k)
+    let n = arr.length;
+
+    let res = [];
+  
+    for (let i = 0; i <= n - k; i++) {
+      
+        let max = arr[i];
+        for (let j = 1; j < k; j++) {
+            if (arr[i + j] > max)
+                max = arr[i + j];
+        }
+        res.push(max);
+    }
+  
+    return res;
 }
 
 
 let arr = [1, 2, 3, 1, 4, 5, 2, 3, 6]
 let k = 3
 
-const res = getSlidingWindowMax(arr, k)
+const res = maxOfSubarrays(arr, k)
 console.log(res) 
 
