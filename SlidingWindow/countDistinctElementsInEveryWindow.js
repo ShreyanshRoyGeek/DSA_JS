@@ -137,6 +137,24 @@ function calculateDistinctElementsII(arr, k) { // O(n) time complexity
 
 }
 
+//Fixed sized window
+function slidingWindowSum(arr, k) {
+
+    let sum = 0
+
+    // first window sum
+    for(let i=0; i<k; i++) {
+        sum += arr[i]
+    }
+
+
+    for(let i=k; i<arr.length; i++) {
+        sum += arr[i] - arr[i-k]
+    }
+
+    
+}
+
 
 let diverArr = [1,2,1,3,4,2,3]
 let k = 4
