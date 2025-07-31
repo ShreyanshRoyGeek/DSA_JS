@@ -60,9 +60,53 @@ function maxOfSubarrays(arr, k) { // 0(n*k)
 }
 
 
+function maximumOfSubArraysII(arr, k) { // 0(n) time,  and 0(k) space
+
+    let res = []
+    let dq = []
+
+    // First window of size k
+    for(let i=0; i<k; i++) {
+
+        // for every elem, previous smaller elements are useless, so remove it
+        while(dq.length > 0 &&  arr[i] >= arr[dq[dq.length - 1]]) {
+            dq.pop()
+        }
+
+        // store index not value
+        dq.push(i)
+    }
+
+    // For remaining k elements
+    for(let i=k; i<arr.length; i++) {
+
+        // ele in the front is the largest ele of previous window
+        res.push(arr[dq[0]])
+
+        // remove ele which is not belonging to current wondow (window of size k)
+        while(dq.length > 0 && dq[0] <= i-k) {
+            dq.shift()
+        }
+
+        // remove all un-necessarily elements, lesser than the current element
+        while(dq.length > 0 && arr[i] >= arr[dq[dq.length -1]]) {
+            dq.pop()
+        }
+
+        dq.push(i)
+    }
+
+    // store the ele of last window
+    res.push(arr[dq[0]])
+
+    return res
+
+}
+
+
 let arr = [1, 2, 3, 1, 4, 5, 2, 3, 6]
 let k = 3
 
-const res = maxOfSubarrays(arr, k)
+const res = maximumOfSubArraysII(arr, k)
 console.log(res) 
 
