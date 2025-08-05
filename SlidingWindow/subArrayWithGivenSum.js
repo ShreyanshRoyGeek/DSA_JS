@@ -51,7 +51,7 @@ function subArrayWithGivenSum(arr, k) {
 }
 
 
-function subArrayWithGivenSumII(arr, k) { 
+/*function subArrayWithGivenSumII(arr, k) { 
 
     // hash map approach
 
@@ -76,15 +76,46 @@ function subArrayWithGivenSumII(arr, k) {
             map.set(sum, 1)
         }
     }
-    
-    return count
-}
 
+    return count
+}*/
+
+
+function subArrayWithGivenSumIII(arr, k) {
+
+    const prefixSum = new Map()
+    let res = 0
+    let currSum = 0
+
+    for(let val of arr) {
+
+        currSum += val
+
+        // If currSum equal to desired sum then new subArray is found
+        if(currSum == k) {
+            res++
+        }
+
+        // Check if difference exists in prefixSum map
+        if(prefixSum.has(currSum - k)) {
+            res += prefixSum.get(currSum - k)
+        }
+        
+        // Add currSum to the map of prefix sums
+        prefixSum.set(currSum, (prefixSum.get(currSum) || 0) + 1)
+        
+    }
+
+    console.log('prefixSum',  prefixSum)
+
+    return res
+
+}
 
 
 let arr = [10, 2, -2, -20, 10]
 let k = -10
 
-const res = subArrayWithGivenSumII(arr, k)
+const res = subArrayWithGivenSumIII(arr, k)
 console.log(res)
 
