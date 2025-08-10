@@ -27,23 +27,6 @@
 
 function longestSubArray(arr, k) {
 
-    for(let i=0; i<arr.length; i++) {
-
-        if(arr[i] <= k) {
-            arr[i] = 0
-        }
-        else {
-            arr[i] = 1
-        }
-    }
-
-    return arr
-
-}
-
-
-function longestSubArrayII(arr, k) {
-
     let ans = 0, n = arr.length
     
     for(let i=0; i<n; i++) {
@@ -68,6 +51,6 @@ function longestSubArrayII(arr, k) {
 const arr = [1, 2, 3, 4, 1]
 const k = 2
 
-const res = longestSubArrayII(arr, k)
+const res = longestSubArray(arr, k)
 console.log(res)
 
