@@ -25,7 +25,7 @@
 */
 
 
-function longestSubArray(arr, k) {
+function longestSubArray(arr, k) { // O(n * log n)
 
     let ans = 0, n = arr.length
     
