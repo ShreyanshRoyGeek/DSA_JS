@@ -47,7 +47,7 @@ function getKthElementsOfSortedCobineArray(arr1, arr2, k) { // 0((n+m) * log(n+m
 }
 
 
-function getKthElementsOfSortedCobinedArrayII(arr1, arr2, k) {
+function getKthElementsOfSortedCobinedArrayII(arr1, arr2, k) { // O(n+m) time , O(n+m) space
     
     let n = arr1.length, m = arr2.length
     let arr = new Array(n+m)
