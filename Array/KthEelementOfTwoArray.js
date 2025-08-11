@@ -47,9 +47,31 @@ function getKthElementsOfSortedCobineArray(arr1, arr2, k) { // 0((n+m) * log(n+m
 }
 
 
-function getKthElementsOfSortedCobineArrayIS(arr1, arr2, k) { 
-
+function getKthElementsOfSortedCobinedArrayII(arr1, arr2, k) {
     
+    let n = arr1.length, m = arr2.length
+    let arr = new Array(n+m)
+    let d=0, i=0, j=0
+
+    while(i<n && j<m) {
+
+        if(arr1[i] < arr2[j]) {
+            arr[d++] = arr1[i++]
+        }
+        else {
+            arr[d++] = arr2[j++]
+        }
+    }
+
+    while(i<n) {
+        arr[d++] = arr1[i++]
+    }
+
+    while(j<m) {
+        arr[d++] = arr2[j++]
+    }
+    
+    return arr[k-1]
 
 }
 
@@ -60,6 +82,6 @@ let arr1 = [2, 3, 6, 7, 9]
 let arr2 = [1, 4, 8, 10]
 let k = 5
 
-const res = getKthElementsOfSortedCobineArray(arr1, arr2, k)
+const res = getKthElementsOfSortedCobinedArrayII(arr1, arr2, k)
 console.log(res)
 
