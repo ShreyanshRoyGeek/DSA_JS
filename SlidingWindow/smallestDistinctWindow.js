@@ -28,10 +28,42 @@
 */
 
 
-function getSmallestDistinctWindow(str) {
+function getSmallestDistinctWindow(str) { // O(n) time and O(k) space
 
+    let map = new Map()
     
+    for(let i=0; i<str.length; i++) {
+        const res = ( map.get(str[i]) || 0 ) + 1
+        map.set(str[i], res)
+    }
 
+
+    let distinct = map.size
+    let i=0, j=0, n=str.length
+    let minSize = n
+    let window = new Map()
+
+
+    while(j<n) {
+        const res = ( window.get(str[j]) || 0 ) + 1
+        window.set(str[j], res)
+
+        while(i<=j && window.size == distinct) {
+            minSize = Math.min(minSize, j-i+1)
+            const res = window.get(str[i]) - 1
+            window.set(str[i], res)
+
+            let curr = window.get(str[i])
+            if(curr == 0){
+                window.delete(str[i])
+            }
+            i++
+        }
+        j++
+
+    }
+
+    return minSize
 
 }
 
