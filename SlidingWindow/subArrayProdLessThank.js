@@ -42,6 +42,29 @@
 
 */
 
+function countSubArrayProductLessThanK(arr, k) { // 0(n*n) 
+
+    let count = 0
+
+    for(let i=0; i<arr.length; i++) {
+
+        let prod = 1
+
+        for(let j=i; j<arr.length; j++) {
+
+            prod *= arr[j]
+            if(prod <k) {
+                count++
+            }
+            else {
+                break
+            }
+        }
+    }
+
+    return count
+}
+
 
 function getSubArrayProductLessThanK(arr, k) {
 
@@ -65,7 +88,7 @@ function getSubArrayProductLessThanK(arr, k) {
 
 let arr = [1, 2, 3, 4]
 let k = 10
-const res = getSubArrayProductLessThanK(arr, k)
+const res = countSubArrayProductLessThanK(arr, k)
 console.log(res)
 
 
