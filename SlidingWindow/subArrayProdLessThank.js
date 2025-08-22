@@ -51,7 +51,7 @@ function getSubArrayProductLessThanK(arr, k) {
         prod *= arr[j]
 
         while(prod >= k && i<=j) {
-            prod = prod / arr[i]
+            prod = Math.floor(prod / arr[i])
             i++
         }
         ans += (j-i+1)

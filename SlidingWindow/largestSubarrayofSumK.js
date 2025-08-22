@@ -88,8 +88,8 @@ function largestSubArrayOfSumKII(arr, k) {
 
         prefixSum += arr[i]
 
-        if(firstSeen.has(prefixSum)) {
-            const prevIndx = firstSeen.get(prefixSum)
+        if(firstSeen.has(prefixSum -k)) {
+            const prevIndx = firstSeen.get(prefixSum -k)
             res = Math.max(res, i-prevIndx)
         }
         else {
@@ -107,10 +107,10 @@ function largestSubArrayOfSumKII(arr, k) {
 
 
 let arr = [15, -2, 2, -8, 1, 7, 10, 23]
-arr = [-31, -48, -90, 54, 20, 95, 6, -86, 22] // Output -> 6
+// arr = [-31, -48, -90, 54, 20, 95, 6, -86, 22] // Output -> 6
 // arr = [2, 10, 4]
 // arr = [1, 0, -4, 3, 1, 0]
-let k = 0
+let k = 17
 const res = largestSubArrayOfSumKII(arr, k)
 console.log(res)
 
