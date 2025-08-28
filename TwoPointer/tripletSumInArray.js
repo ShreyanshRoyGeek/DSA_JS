@@ -85,7 +85,6 @@ function hasTripletSumII(arr, target) {
     for(let i=0; i<n-2; i++) {
 
         let l = i+1, r = n-1
-
         let requiredSum = target - arr[i]
 
         while(l<r) {
