@@ -24,7 +24,7 @@
 */
 
 
-function getAllQuadruplesSum(arr, target) {
+function getAllQuadruplesSum(arr, target) { // O(n^5) time & O(n) space
 
     let n = arr.length, res = []
 
@@ -57,11 +57,42 @@ function getAllQuadruplesSum(arr, target) {
 }
 
 
+function getAllQuadruplesSumI(arr, target) { // O(n^3) time & O(n) space
+
+    let n = arr.length
+    let resArr = new Set()
+
+    for(let i=0; i<n; i++) {
+
+        for(let j=i+1; j<n; j++) {
+
+            let set = new Set() 
+
+            for(let k=j+1; k<n; k++) {
+
+                let sum = arr[i] + arr[j] + arr[k]
+                let diff = target - sum
+
+                if(set.has(diff)) {
+                    let curr = [arr[i], arr[j], arr[k], diff].sort((a,b) => a-b)
+                    resArr.add(curr.toString())
+                }
+
+                set.add(arr[k])
+            }
+        }
+    }
+
+    return resArr
+
+}
+
+
 let arr = [0, 0, 2, 1, 1]
 arr = [10, 2, 3, 4, 5, 7, 8]
 let target = 3
 target = 23
 
-const res = getAllQuadruplesSum(arr, target)
+const res = getAllQuadruplesSumI(arr, target)
 console.log(res)
 
