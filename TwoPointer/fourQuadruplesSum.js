@@ -88,11 +88,61 @@ function getAllQuadruplesSumI(arr, target) { // O(n^3) time & O(n) space
 }
 
 
+
+function getAllQuadruplesSumII(arr, target) { // O(n^3), O(1) space
+
+    let n = arr.length, resArr = []
+
+    arr = arr.sort((a,b) => a-b)
+
+    for(let i=0; i<n; i++) {
+
+        if(i>0 && arr[i] == arr[i-1]) continue
+
+        for(let j=i+1; j<n; j++) {
+
+            let p = j+1, q = n-1
+
+            while(p<q) {
+
+                let sum = arr[i] + arr[j] + arr[p] + arr[q]
+
+                if(sum == target) {
+                    resArr.push([arr[i], arr[j], arr[p], arr[q]])
+                    p++, q--
+
+                    while(p<q && arr[p] == arr[p-1]) { 
+                        p++ 
+                    }
+
+                }
+                else if(sum < target) {
+                    p++
+                }
+                else {
+                    q--
+                }
+
+            }
+
+            while((j<n) && arr[j] == arr[j-1]) {
+                j++
+            }
+            
+        }
+    }
+
+    return resArr
+
+}
+
 let arr = [0, 0, 2, 1, 1]
 arr = [10, 2, 3, 4, 5, 7, 8]
+arr = [0, 0, 2, 1, 1]
 let target = 3
 target = 23
+target = 2
 
-const res = getAllQuadruplesSumI(arr, target)
+const res = getAllQuadruplesSumII(arr, target)
 console.log(res)
 
