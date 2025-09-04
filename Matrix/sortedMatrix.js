@@ -1,6 +1,6 @@
 /*
 
-    Sorted Matrix --> 
+    Sorted Matrix --> (Basic)
 
     Given an NxN matrix Mat. Sort all elements of the matrix
 
