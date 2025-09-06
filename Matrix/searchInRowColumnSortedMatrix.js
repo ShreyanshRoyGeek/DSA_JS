@@ -28,14 +28,14 @@
 
 function searchInRowColumnSortedMatrix(mat, x) { // O(n^2)
 
-    for(let i=0; i<mat.length; i++) {
+    for (let i = 0; i < mat.length; i++) {
 
-        for(let j=0; j<mat[i].length; j++) {
+        for (let j = 0; j < mat[i].length; j++) {
 
-            if(mat[i][j]==x) {
+            if (mat[i][j] == x) {
                 return true
             }
- 
+
         }
     }
 
@@ -44,10 +44,72 @@ function searchInRowColumnSortedMatrix(mat, x) { // O(n^2)
 }
 
 
-let mat = [[3, 30, 38],[20, 52, 54],[35, 60, 69]]
+function searchInRowColumnSortedMatrixI(mat, x) {
+
+    let row = 0, m = mat[0].length
+
+    for (let i = 0; i < mat.length; i++) {
+
+        if (mat[i][0] == x) {
+            return true
+        }
+
+        else if (mat[i][0] > x) {
+            row = i-1
+            break
+        }
+
+        else {
+            row = i
+        }
+    }
+
+
+    if (row >= 0) {
+        for (let i = 0; i <m; i++) {
+            if (mat[row][i] == x) {
+                return true
+            }
+        }
+    }
+
+    return false
+
+}
+
+
+function searchInRowColumnSortedMatrixII(mat, x) {
+
+    let n = mat.length, m = mat[0].length
+
+    let i = 0, j = m-1
+
+    while(i<n && j>= 0) {
+
+        if(mat[i][j] < x) {
+            i++
+        }
+
+        else if(mat[i][j] > x) {
+            j--
+        }
+
+        else {
+            return true
+        }
+
+    }
+
+    return false
+}
+
+
+
+
+let mat = [[3, 30, 38], [20, 52, 54], [35, 60, 69]]
 let x = 60
 
-const res = searchInRowColumnSortedMatrix(mat, x)
+const res = searchInRowColumnSortedMatrixII(mat, x)
 console.log(res)
 
 
