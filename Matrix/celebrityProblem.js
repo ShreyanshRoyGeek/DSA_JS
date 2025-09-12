@@ -61,6 +61,82 @@ function getCelebrity(mat) {
 }
 
 
+function getCelebrityI(mat) {
+
+    let n = mat.length
+
+    let i = 0, j = n-1
+
+    while(i<j) {
+
+        // i know j, so, i can't be a celebrity
+        if(mat[i][j] == 1) {
+            i++
+        }
+        // else j can't be a celebrity
+        else {
+            j--
+        }
+
+        // i point to our celebrity candidate
+        let c = i
+
+        //  Check if c is actually celebrity or not
+        for(let i=0; i<n; i++) {
+            if(i == c) continue
+
+            // if any person does not c and c doesn't know any person return -1         
+            if(mat[c][i] || !mat[i][c]) return -1
+        }
+
+    }
+
+    return c
+
+}
+
+
+function getCelebrityII(mat) {
+
+    let st = [], n = mat.length
+
+    for(let i=0; i<n; i++) {
+        st.push(i)
+    }
+
+    // console.log(st)
+
+    while(st.length > 1) {
+
+        let a = st.pop()
+        let b = st.pop()
+
+        if(mat[a][b] !== 0) {
+            st.push(b)
+        }
+        else {
+            st.push(a)
+        }
+    }
+
+    
+    let c = st.pop()
+
+    for(let i=0; i<n; i++) {
+
+        if(i==c) continue
+
+        if(mat[i][c] !== 1 || mat[c][i] !== 0) {
+            return -1
+        }
+    }
+
+    return c
+
+
+}
+
+
 
 let mat = [
             [1, 1, 0],
@@ -68,7 +144,9 @@ let mat = [
             [0, 1, 1]
         ]
 
-const res = getCelebrity(mat)
+mat = [[1, 1], [1, 1]]
+
+const res = getCelebrityII(mat)
 console.log(res)
 
 
