@@ -27,11 +27,9 @@ function getOverlappingIntervals(arr) {
     if(arr.length == 0) return []
 
     const sorted = arr.sort((a,b) => a[0] - b[0])
-    // console.log(sorted)
 
     const res = []
     res.push(sorted[0])
-    // console.log(res)
 
     for(let i=0; i<sorted.length; i++) {
         let last = res[res.length - 1]
