@@ -32,29 +32,6 @@
 
 
 
-function getMinimumHeight(arr, k) {
-
-    let min = Infinity
-    let max = -Infinity
-
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] < min) {
-            min = arr[i]
-        }
-        else if (arr[i] > max) {
-            max = arr[i]
-        }
-    }
-
-    // console.log('min', min)
-    // console.log('max', max)
-
-    const minHeight = (max - k) - (min + k)
-
-    return minHeight
-}
-
-
 function getMinimumDifference(arr, k) {
     const n = arr.length;
     arr.sort((a, b) => a - b);
@@ -85,10 +62,35 @@ function getMinimumDifference(arr, k) {
 }
 
 
-// let arr = [1, 5, 8, 10]
-let arr = [3, 9, 12, 16, 20]
-let k = 3
+function minimizeTheHeight(arr, k) {
 
-const res = getMinimumHeight(arr, k)
+    arr = arr.sort((a,b) => a-b)
+
+    let n = arr.length
+    let shortest = arr[0]
+    let longest = arr[n-1]
+
+    let ans = longest - shortest
+
+    for(let i=1; i<n; i++) {
+
+        shortest = Math.min(arr[0]+k, arr[i]-k)
+        longest = Math.max(arr[i-1]+k, arr[n-1]-k)
+
+        if(shortest < 0) continue
+
+        ans = Math.min(ans, longest-shortest)
+    }
+
+    return ans
+
+}
+
+
+let arr = [1, 5, 8, 10]
+// let arr = [3, 9, 12, 16, 20]
+let k = 2
+
+const res = minimizeTheHeight(arr, k)
 console.log('res', res)
 
