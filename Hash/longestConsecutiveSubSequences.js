@@ -31,15 +31,15 @@
 
 function getLongestConsecutiveSubSequences(arr) { // O(n * logn) time ans O(1) space
 
-    arr = arr.sort((a,b) => a-b)
+    arr = arr.sort((a, b) => a - b)
 
     let cnt = 1, res = 1
 
-    for(let i=1; i<arr.length; i++) {
+    for (let i = 1; i < arr.length; i++) {
 
-        if(arr[i] == arr[i-1]) continue
+        if (arr[i] == arr[i - 1]) continue
 
-        if(arr[i] == arr[i-1] + 1) {
+        if (arr[i] == arr[i - 1] + 1) {
             cnt++
         }
         else {
@@ -54,9 +54,42 @@ function getLongestConsecutiveSubSequences(arr) { // O(n * logn) time ans O(1) s
 }
 
 
+function getLongestConsecutiveSubSequencesI(arr) { // O(n) time & O(n) space
+
+    let set = new Set()
+    let res = 0
+
+    for (val of arr) {
+        set.add(val)
+    }
+
+
+    for (let i = 0; i < arr.length; i++) {
+        let curr = arr[i]
+        
+        // if curr ele is the starting ele of the sequence
+        if (set.has(curr) && !set.has(curr - 1)) {
+            
+            let count = 0
+            while (set.has(curr)) {
+                // to avoid duplicate count
+                set.delete(curr)
+                count++
+                curr++
+            }
+
+            res = Math.max(count, res)
+        }
+
+    }
+
+    return res
+}
+
+
 // let arr = [2, 2, 6, 1, 9, 4, 5, 3]
 // let arr = [1, 9, 3, 10, 4, 20, 2]
 let arr = [15, 13, 12, 14, 11, 10, 9]
-const res = getLongestConsecutiveSubSequences(arr)
+const res = getLongestConsecutiveSubSequencesI(arr)
 console.log(res)
 
