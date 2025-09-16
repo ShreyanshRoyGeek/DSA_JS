@@ -32,7 +32,31 @@
 
 function findSubArray(arr) {
 
-    
+    let map = new Map()
+    map.set(0, 1)
 
+    let sum = 0, count = 0
+    for(let val of arr) {
+
+        sum += val
+        if(map.has(sum)) {
+            const freq = map.get(sum)
+            count += freq
+            map.set(sum, freq+1)
+        }
+        else {
+            map.set(sum, 1)
+        }
+    }
+
+    return count
 
 }
+
+
+// let arr = [0, 0, 5, 5, 0, 0]
+// let arr = [6, -1, -3, 4, -2, 2, 4, 6, -12, -7]
+let arr = [0]
+const res = findSubArray(arr)
+console.log(res)
+
