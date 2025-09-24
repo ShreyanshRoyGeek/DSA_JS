@@ -20,7 +20,8 @@
 */
 
 
-function stockSpan(arr) {
+// brute force solution
+function stockSpan(arr) { // O(n^2)
 
     let res = []
 
@@ -43,12 +44,31 @@ function stockSpan(arr) {
     }
 
     return res
+}
+
+
+// brute force solution
+function stcokSpanI(arr) { // O(n^2)
+
+    let n = arr.length
+    let span = new Array(n).fill(1)
+
+    for(let i=0; i<n; i++) {
+        let j = i-1
+        while(j >= 0 && arr[i] > arr[j]) {
+            span[i]++
+            j--
+        }
+    }
+
+    return span
 
 }
 
 
 // let arr = [100, 80, 90, 120]
 let arr = [10, 4, 5, 90, 120, 80]
-const res = stockSpan(arr)
+const res = stcokSpanI(arr)
 console.log(res)
+
 
