@@ -48,7 +48,7 @@ function stockSpan(arr) { // O(n^2)
 
 
 // brute force solution
-function stcokSpanI(arr) { // O(n^2)
+function stockSpanI(arr) { // O(n^2)
 
     let n = arr.length
     let span = new Array(n).fill(1)
@@ -66,9 +66,40 @@ function stcokSpanI(arr) { // O(n^2)
 }
 
 
-// let arr = [100, 80, 90, 120]
-let arr = [10, 4, 5, 90, 120, 80]
-const res = stcokSpanI(arr)
+// stop the loop at the previous greater element
+function stockSpanII(arr) { // O(n) time and O(n) space
+
+    let span = []
+
+    // store prev highest elem in the peek of stack
+    let st = []
+
+    for(let i=0; i<arr.length; i++) {
+
+        // while curr elem is grater than stack peak elem, pop the stack
+        while(st.length >= 0 && arr[st[st.length -1]] <= arr[i]) {
+            st.pop()
+        }
+
+        if(st.length == 0) {
+            span [i] = i + 1
+        }
+        else {
+            span [i] = i - st[st.length-1]
+        }
+
+        st.push(i)
+
+    }
+
+    return span
+
+}
+
+
+let arr = [100, 80, 90, 120]
+// let arr = [10, 4, 5, 90, 120, 80]
+const res = stockSpanII(arr)
 console.log(res)
 
 
