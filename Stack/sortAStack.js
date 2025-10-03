@@ -42,8 +42,33 @@ function sortAStack(st) {
 }
 
 
+
+// Using temp stack
+function sortAStackII(st) { // O(n^2) time and O(n) space
+ 
+    let tempStack = []
+
+    while(st.length > 0) {
+
+        let temp = st.pop()
+
+        while(tempStack.length > 0 && tempStack[tempStack.length-1] < temp) {
+            st.push(tempStack[tempStack.length-1])
+            tempStack.pop()
+        }
+
+        tempStack.push(temp)
+
+    }
+
+    return tempStack
+
+}
+
+
+
 let st = [1, 2, 3]
 // let st = [41, 3, 32, 2, 11]
-const res = sortAStack(st)
+const res = sortAStackII(st)
 console.log(res)
 
