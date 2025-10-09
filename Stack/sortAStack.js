@@ -66,9 +66,47 @@ function sortAStackII(st) { // O(n^2) time and O(n) space
 }
 
 
+function sortAStackUsingRecursion(st) {
+    sortStack(st)
 
-let st = [1, 2, 3]
-// let st = [41, 3, 32, 2, 11]
-const res = sortAStackII(st)
-console.log(res)
+    function sortStack(st) {
+
+        if(st.length == 0) return 
+
+        const num = st.pop()
+
+        // recursive call
+        sortStack(st)
+
+
+        sortedInsert(st, num)
+
+        return st
+    }
+
+    
+    function sortedInsert(st, num) {
+
+        if(st.length == 0 || st[st.length -1] < num) {
+            st.push(num)
+            return
+        }
+
+        const temp = st.pop()
+
+        // recursive call
+        sortedInsert(st, num)
+
+        st.push(temp)
+
+    }
+
+}
+
+
+
+// let st = [1, 2, 3]
+let st = [41, 3, 32, 2, 11]
+const res = sortAStackUsingRecursion(st)
+console.log(st)
 
