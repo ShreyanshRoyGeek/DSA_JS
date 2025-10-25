@@ -71,7 +71,32 @@ class StackQueue { // FIFO
         return -1
     }
 
+    enqueueI(x) { //O(1)
+        this.s1.push(x)
+    }
+
+    dequeueI() { // O(n)
+        if(this.s2.length ==  0) {
+            while(this.s1.length > 0) {
+                this.s2.push(this.s1.pop())
+            }
+        }
+        else {
+            return this.s2[this.s2.length -1]
+        }
+
+        return -1
+    }
+
     front() {
+        if(this.s1.length > 0) {
+            return this.s1[this.s1.length -1]
+        }
+
+        return -1
+    }
+
+    frontI() {
         if(this.s1.length > 0) {
             return this.s1[this.s1.length -1]
         }
@@ -83,17 +108,21 @@ class StackQueue { // FIFO
         return this.s1.length -1
     }
 
+    sizeI() {
+        return this.s1.length -1
+    }
+
 }
 
 
 const q = new StackQueue();
-q.enqueue(1);
-q.enqueue(2);
-q.enqueue(3);
+q.enqueueI(1);
+q.enqueueI(2);
+q.enqueueI(3);
 
 console.log("Front:", q.front()); 
 console.log("Size:", q.size());  
 
-q.dequeue();        
+q.dequeueI();        
 console.log("Front:", q.front()); 
 console.log("Size:", q.size());
