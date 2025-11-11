@@ -47,9 +47,47 @@ function kadensAlgorithm(arr) {
 }
 
 
+
+function maximumSubArraySumWithIndex(arr) {
+
+    let sum = 0, res = arr[0]
+
+    let startIndx = 0, endIndx = 0
+
+    for(let i=0; i<arr.length; i++) {
+
+        sum += arr[i]
+
+        let start = 0
+        if(sum == 0) {
+            start = i
+        }
+
+        if(res < sum) {
+            res = sum
+            startIndx = start, endIndx = i
+        }
+
+        if(sum < 0) {
+            sum = 0
+        }
+        
+    }
+
+    let possibleSubArray = []
+
+    for(let i=startIndx; i<=endIndx; i++) {
+        possibleSubArray.push(arr[i])
+    }
+
+    return { res, 'arr': possibleSubArray}
+}
+
+
 let driverArr = [1,2,3,-2,5]
 // driverArr = [-1,-2,-3,-4]
-const res = kadensAlgorithm(driverArr)
+// let driverArr = [-6]
+const res = maximumSubArraySumWithIndex(driverArr)
 
 console.log(res)
 

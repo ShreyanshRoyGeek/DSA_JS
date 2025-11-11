@@ -49,6 +49,14 @@ function countInversions(arr) {
 }
 
 
+
+function countInversionI(arr) {
+
+    
+
+}
+
+
 let arr = [2, 4, 1, 3, 5]
 const res = countInversions(arr)
 console.log('res', res)
