@@ -95,6 +95,64 @@ function productExceptSelf(arr) {
 }
 
 
+function productExceptSelfI(nums) { // 0(n) time, O(n) space
+
+    let res = []
+
+    let n = nums.length
+    let prefProd = new Array(n).fill(1)
+    let suffixProd = new Array(n).fill(1)
+
+    for(let i=1; i<n; i++) {
+        prefProd[i] = prefProd[i-1] * nums[i-1]
+    } 
+
+    for(let j=n-2; j>=0; j--) {
+        suffixProd[j] = suffixProd[j+1] * nums[j+1]
+    } 
+
+    for(let k=0; k<n; k++) {
+        res[k] = prefProd[k] * suffixProd[k]
+    }
+
+    return res
+
+}
+
+
+var productExceptSelfII = function(nums) { // O(n) time and O(1) space
+
+    let zerosCount = 0
+    let index = -1, prod = 1, n = nums.length
+    let res = new Array(n).fill(0)
+
+    for(let i=0; i<n; i++) {
+
+        if(nums[i] == 0) {
+            zerosCount++
+            index = i
+        }
+        else {
+            prod *= nums[i]
+        }
+
+    }
+
+    if(zerosCount == 1) {
+        res[index] = prod
+    }
+    else if(zerosCount == 0) {
+        for(let i=0; i<n; i++) {
+            res[i] = Math.floor(prod/nums[i])
+        }
+    }
+
+    return res
+};
+
+
+
+
 let diverArr = [3, 5, 2, 6]
 const res = productExceptSelf(diverArr)
 console.log("res", res)
