@@ -41,31 +41,11 @@ function getPairsCount(arr, k) {
 
 
 
-
-function twoSum(arr, sum) {
-
-    const table = {}
-
-    for(let i=0; i<arr.length; i++) {
-
-        const diff = sum - arr[i]
-
-        if(table[diff] != undefined) {
-            return [ table[diff] , i ]
-        }
-        
-        table[arr[i]] = i
-    }
-
-}
-
-
-
-
 // Example usage
-const arr = [1, 5, 2, 4];
-const K = 6;
+// let arr = [1, 5, 2, 4];
+// let arr = [1, 5, 1, 7];
+let arr = [1, 1, 1, 1]
+const K = 2;
 console.log(getPairsCount(arr, K)); // Output: 2 (Pairs: [1, 5] and [2, 4])
 
-console.log(twoSum(arr, K))
 

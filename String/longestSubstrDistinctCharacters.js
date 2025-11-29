@@ -1,5 +1,5 @@
 
-function longestSubStrDistinctChars(s) {
+function longestSubStrOfDistinctChars(s) {
 
     let maxSubstrLength = 0
     let longestSubstr = ""
@@ -30,7 +30,7 @@ function longestSubStrDistinctChars(s) {
 
 
 
-function longestSubStrDistinctCharsII(s) {
+function longestSubStrOfDistinctCharsI(s) { // O(n^2) - time and O(n) - space
 
     let maxSubstrLength = 0
     
@@ -62,12 +62,34 @@ function longestSubStrDistinctCharsII(s) {
 }
 
 
+function longestSubStrOfDistinctCharsII(s) { // O(n) - time and O(1) - space
+
+    let map = new Map()
+
+    let left = 0, maxCharCount = 0
+
+    for(let right=0; right<s.length; right++) {
+
+        while(map.has(s[right])) {
+            map.delete(s[left])
+            left++
+        }
+
+        map.set(s[right])
+        maxCharCount =  Math.max(maxCharCount, (right - left + 1))
+
+    }
+
+    return maxCharCount
+
+}
+
 
 
 // Example usage:
-// const s = "abcabcbb"
+const s = "abcabcbb"
 // const s = "pwwkew"
-const s = "geeksforgeeks"
+// const s = "geeksforgeeks"
 
-console.log(longestSubStrDistinctCharsII(s)); // Output: "abc"
+console.log(longestSubStrOfDistinctCharsII(s)); // Output: "abc"
 

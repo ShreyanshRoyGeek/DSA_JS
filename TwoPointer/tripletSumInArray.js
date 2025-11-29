@@ -35,13 +35,13 @@ function hasTripletSum(arr, target) {
 
     let n = arr.length
 
-    for(let i=0; i<n-2; i++) {
+    for (let i = 0; i < n - 2; i++) {
 
-        for(let j=i+1; j<n-1; j++) {
+        for (let j = i + 1; j < n - 1; j++) {
 
-            for(let k=i+2; k<n; k++) {
+            for (let k = i + 2; k < n; k++) {
 
-                if(arr[i]+arr[j]+arr[k] == target) {
+                if (arr[i] + arr[j] + arr[k] == target) {
                     return true
                 }
 
@@ -56,16 +56,16 @@ function hasTripletSum(arr, target) {
 
 function hasTripletSumI(arr, target) {
 
-    let n= arr.length
-    
-    for(let i=0; i<n-1; i++) {
-        
+    let n = arr.length
+
+    for (let i = 0; i < n - 1; i++) {
+
         const set = new Set()
 
-        for(let j=i+1; j<n; j++) {
+        for (let j = i + 1; j < n; j++) {
 
             const requiredSum = target - (arr[i] + arr[j])
-            if(set.has(requiredSum)) {
+            if (set.has(requiredSum)) {
                 return true
             }
 
@@ -79,22 +79,22 @@ function hasTripletSumI(arr, target) {
 
 function hasTripletSumII(arr, target) {
 
-    arr = arr.sort((a, b) => a-b)
+    arr = arr.sort((a, b) => a - b)
     let n = arr.length
 
-    for(let i=0; i<n-2; i++) {
+    for (let i = 0; i < n - 2; i++) {
 
-        let l = i+1, r = n-1
+        let l = i + 1, r = n - 1
         let requiredSum = target - arr[i]
 
-        while(l<r) {
+        while (l < r) {
 
-            if((arr[l] + arr[r]) == requiredSum) return true
+            if ((arr[l] + arr[r]) == requiredSum) return true
 
-            if((arr[l] + arr[r]) < requiredSum) {
+            if ((arr[l] + arr[r]) < requiredSum) {
                 l++
             }
-            else if((arr[l] + arr[r]) > requiredSum) {
+            else if ((arr[l] + arr[r]) > requiredSum) {
                 r--
             }
 
@@ -105,8 +105,9 @@ function hasTripletSumII(arr, target) {
 
 }
 
-
-let arr = [1, 4, 45, 6, 10, 8]
-let target = 22
+// let arr = [1, 4, 45, 6, 10, 8]
+let arr = [-1, 0, 1, 2, -1, -4]
+// let target = 22
+let target = 0
 const res = hasTripletSumII(arr, target)
 console.log(res)
