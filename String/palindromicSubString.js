@@ -61,11 +61,57 @@ function palindromicSubString(s) {
 
 
 
+function palindromicSubStringI(s) {
+
+    let resCount = 0, res = [], longestSubstr = '', longestSubstrLen = 0
+
+    for(let i=0; i<s.length; i++) {
+
+        // calculate odd length palindrome
+        resCount += findPalindrome(s, i, i)
+
+        // calculate even length palindrome
+        resCount += findPalindrome(s, i, i+1)
+
+    }
+
+
+    function findPalindrome(s, l, r) {
+
+        let count = 0
+
+        while(l >= 0 && r < s.length && s[l] == s[r]) {
+            count++
+
+            let str = ''
+            for(let i=l; i<=r; i++) {
+                str += s[i]
+            }
+
+            if(str.length > longestSubstrLen) {
+                longestSubstr = str
+                longestSubstrLen = str.length
+            }
+
+            res.push(str)
+
+            l--, r++
+        }
+
+        return count
+    }
+
+    return { res, resCount, longestSubstr, longestSubstrLen }
+    
+}
+
+
+
 
 
 // let s = "abc"
 let s = "aaa"
-const res = palindromicSubString(s)
-console.log(res)
+const resCount = palindromicSubStringI(s)
+console.log(resCount)
 
 
