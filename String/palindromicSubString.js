@@ -110,7 +110,8 @@ function palindromicSubStringI(s) {
 
 
 // let s = "abc"
-let s = "aaa"
+// let s = "aaa"
+let s = "babad"
 const resCount = palindromicSubStringI(s)
 console.log(resCount)
 
