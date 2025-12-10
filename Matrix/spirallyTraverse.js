@@ -20,6 +20,14 @@
     Explanation: Applying same technique as shown above, output will be [32, 44, 27, 23, 62, 50, 28, 54].
 
 
+    Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+    Output: [1,2,3,6,9,8,7,4,5]
+
+    
+    Input: matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+    Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+
+
     Expected Complexities
     Time Complexity: O(n * m)
     Auxiliary Space: O(n * m)
@@ -61,8 +69,8 @@ function spirallyTraverse(mat) {
             bottom--
         }
 
+        // print left col from bottom to top
         if (left <= right) {
-            // print left col from bottom to top
             for (let i = bottom; i >= top; i--) {
                 res.push(mat[i][left])
             }
@@ -77,6 +85,8 @@ function spirallyTraverse(mat) {
 
 const mat = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
 // let mat = [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18]]
+// let mat = [[1,2,3],[4,5,6],[7,8,9]]
+// let mat = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
 const res = spirallyTraverse(mat)
 console.log(res)
 
