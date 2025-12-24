@@ -1,11 +1,11 @@
 /*
 
-
+    Reverse a LL
 
 */
 
 
-function revesseALinkedListIterative(head) {
+function reverseALinkedListIterative(head) {
 
     if(!head) {
         return 
