@@ -119,12 +119,27 @@ function isSubTree(root, subroot) {
 
 }
 
+function kthLevel(root, k) {
+
+    if(root == null) return 
+
+    if(k == 1) {
+        console.log(root.data)
+        // res.push(root.data)
+    }
+
+    kthLevel(root.left, k-1)
+    kthLevel(root.right, k-1)
+
+}
 
 const tree = new Tree(1)
 tree.left = new Tree(2)
 tree.right = new Tree(3)
 tree.left.left = new Tree(4)
 tree.left.right = new Tree(5)
+tree.right.left = new Tree(6)
+tree.right.right = new Tree(7)
 
 
 const subTree = new Tree(2)
@@ -132,7 +147,7 @@ subTree.left = new Tree(4)
 subTree.right = new Tree(5)
 
 console.log(tree)
-console.log(subTree)
+// console.log(subTree)
 
 let res = []
 
@@ -152,4 +167,8 @@ let res = []
 
 // console.log(sumOfNodes(tree))
 
-console.log(isSubTree(tree, subTree))
+// console.log(isSubTree(tree, subTree))
+
+kthLevel(tree, 3)
+
+
