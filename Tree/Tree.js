@@ -57,6 +57,27 @@ function postOrder(node, res) {
 }
 
 
+function levelOrder(node, res) {
+
+    levelOrderRec(node, 0, res)
+
+    function levelOrderRec(node, level, res) {
+
+        if(!node) return 
+
+        if(res.length <= level) res.push([])
+
+        res[level].push(node.data)
+
+        levelOrderRec(node.left, level+1, res)
+        levelOrderRec(node.right, level+1, res)
+
+    }
+
+    return res
+}
+
+
 // count nodes in the tree
 function getSize(node) {
 
@@ -133,6 +154,22 @@ function kthLevel(root, k) {
 
 }
 
+
+function transformToSumTree(root) {
+
+    if(!root) return 0
+
+    let leftSum = transformToSumTree(root.left)
+
+    let rightSum = transformToSumTree(root.right)
+
+    root.data += leftSum + rightSum
+    
+    return root.data
+
+}
+
+
 const tree = new Tree(1)
 tree.left = new Tree(2)
 tree.right = new Tree(3)
@@ -161,6 +198,9 @@ let res = []
 // postOrder(tree, res)
 // console.log(res)
 
+levelOrder(tree, res)
+console.log(res)
+
 // console.log(getSize(tree)) 
 
 // console.log(height(tree))
@@ -169,6 +209,8 @@ let res = []
 
 // console.log(isSubTree(tree, subTree))
 
-kthLevel(tree, 3)
+// kthLevel(tree, 3)
+
+// console.log(transformToSumTree(tree))
 
 
