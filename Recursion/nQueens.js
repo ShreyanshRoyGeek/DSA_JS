@@ -1,6 +1,6 @@
 /*
 
-    N-Queens Problem
+    51. N-Queens Problem --> Recursion and Backtracking --> (Hard) 
 
     The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.
 
