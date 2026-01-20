@@ -23,7 +23,7 @@
 */
 
 
-
+/*
 function sedokuSolver(board) {
 
     let res = []
@@ -193,10 +193,92 @@ function isSafe(board, row, col, num) {
     return true
 
 }
+*/
+
+
+function isSafe(mat, row, col, num) {
+
+    // check if num exists in the row
+    for(let x=0; x<9; x++) {
+        if(mat[row][x] == num) return false
+    }
+
+    // check if num exists in the col
+    for(let x=0; x<9; x++) {    
+        if(mat[x][col] == num) return false
+    }
+
+    // check if the num exists in the 3*3 matrix
+    const startRow = row - (row %3)
+    const startCol = col - (col %3)
+
+    for(let i=0; i<3; i++) {
+        for(let j=0; j<3; j++) {
+            if(mat[i + startRow][j + startCol] == num) return false
+        }
+    }
+
+    return true
+
+}
+
+
+function solveSudoku(mat) {
+    solveSudokuRec(mat, 0, 0) 
+
+    let res = []
+    for(let i=0; i<mat.length; i++) {
+
+        let ans = []
+
+        for(let j=0; j<mat.length; j++) {
+            ans.push(mat[i][j])
+        }
+
+        res.push(ans)
+    }
+
+    return res
+
+}
+
+
+function solveSudokuRec(mat, row, col) {
+
+    // base case: Reached nth column of the last row
+    if(row == 8 && col == 9) return true
+
+    // If last col of the row, go to next row
+    if(col == 9) {
+        row++ 
+        col = 0
+    }
+
+
+    if(mat[row][col] !== '.') {
+        return solveSudokuRec(mat, row, col+1)
+    }
+
+    for(let num=0; num<=9; num++) {
+
+        if(isSafe(mat, row, col, num)) {
+
+            mat[row][col] = num
+            if(solveSudoku(mat, row, col+1)) return true
+
+            mat[row][col] = '.'
+        }
+
+    }
+
+    return false
+
+}
 
 
 let board = [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]
-const res = sedokuSolver(board)
+const res = solveSudoku(board)
 console.log(res)
+// console.log(board)
 
 
