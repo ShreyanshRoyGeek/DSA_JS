@@ -54,9 +54,35 @@ function findSubArray(arr) {
 }
 
 
-// let arr = [0, 0, 5, 5, 0, 0]
+function subArrayWithZeroSum(arr) {
+
+    let prefixSum = new Map()
+    prefixSum.set(0, 1)
+    let res = 0, currSum = 0
+
+    for(let val of arr) {
+
+        currSum += val
+
+        if(prefixSum.has(currSum)) {
+
+            res += prefixSum.get(currSum) 
+
+        }
+
+        prefixSum.set(currSum, ( prefixSum.get(currSum) || 0 ) + 1)
+
+    }
+
+    return res
+
+}
+
+
+let arr = [0, 0, 5, 5, 0, 0]
 // let arr = [6, -1, -3, 4, -2, 2, 4, 6, -12, -7]
-let arr = [0]
-const res = findSubArray(arr)
+// let arr = [0]
+// let arr = [1, 2, -1]
+const res = subArrayWithZeroSum(arr)
 console.log(res)
 
