@@ -57,8 +57,6 @@ function calculateDistinctElements(arr, k) {
         index++
     }
 
-    // console.log('count1',count)
-
     resArr[0] = Object.keys(count)?.length
 
 
@@ -78,8 +76,6 @@ function calculateDistinctElements(arr, k) {
         resArr[i] = Object.keys(count)?.length
 
     }
-
-    // console.log('count2',count)
 
     return resArr
 
@@ -106,8 +102,6 @@ function calculateDistinctElementsII(arr, k) { // O(n) time complexity
 
     resArr[0] = count.size
 
-    // console.log('count1',count)
-
 
     for(let i=1; i<n-k+1; i++) {
 
@@ -131,7 +125,6 @@ function calculateDistinctElementsII(arr, k) { // O(n) time complexity
 
     }
 
-    // console.log('count2',count)
 
     return resArr
 

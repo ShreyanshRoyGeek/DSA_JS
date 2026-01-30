@@ -76,11 +76,13 @@ function getKthElementsOfSortedCobinedArrayII(arr1, arr2, k) { // O(n+m) time , 
 }
 
 
+// let arr1 = [2, 3, 6, 7, 9]
+// let arr2 = [1, 4, 8, 10]
+// let k = 5
 
-
-let arr1 = [2, 3, 6, 7, 9]
-let arr2 = [1, 4, 8, 10]
-let k = 5
+let arr1 = [1, 4, 8, 10, 12]
+let arr2 = [5, 7, 11, 15, 17]
+let k = 6
 
 const res = getKthElementsOfSortedCobinedArrayII(arr1, arr2, k)
 console.log(res)
