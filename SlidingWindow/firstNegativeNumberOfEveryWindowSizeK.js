@@ -81,11 +81,61 @@ function firstNegativeNumberOfWindowOfSizeK(arr, k) {
 
 }
 
+function firstNegativeNoOfEveryWindowOfSizeK(arr, k) {
+
+    let dq = [], res = []
+
+    for(let i=0; i<k; i++) {
+        if(arr[i] < 0) dq.push(arr[i])
+    }
+
+    res.push(dq[0] ?  dq[0] : 0)
+
+    for(let i=k; i<arr.length; i++) {
+
+        if(arr[i-k] < 0) dq.shift()
+
+        if(arr[i] < 0) dq.push(arr[i])
+
+        res.push(dq[0] ? dq[0] : 0)
+    }
+
+    return res
+
+}
+
+
+function firstNegativeInEveryWindowOfSizeKI(arr, k) {
+
+    let dq = [], res = []
+
+    for(let i=0; i<k; i++) {
+        if(arr[i] < 0) dq.push(i)
+    }
+
+    res.push(arr[dq[0]] ? arr[dq[0]] : 0)
+
+    for(let i=k; i<arr.length; i++) {
+
+        if(dq.length > 0 && dq[0] <= i-k) {
+            dq.shift()
+        }
+
+        if(arr[i] < 0) dq.push(i)
+
+        res.push(arr[dq[0]] ? arr[dq[0]] : 0)
+    }
+
+    return res
+}
+
+
+
 
 const driverArr = [12, -1, -7, 8, -15, 30, 16, 28]
 let k = 3
 
-const res = firstNegativeNumberOfWindowOfSizeK(driverArr, k)
+const res = firstNegativeInEveryWindowOfSizeKI(driverArr, k)
 console.log('res', res)
 
 
