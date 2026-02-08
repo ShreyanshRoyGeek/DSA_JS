@@ -58,23 +58,7 @@ function largestSubArrayOfSumK(arr, k) { // O(n * log n)
 }
 
 
-function largestSubArrayOfSumKI(arr, k) { // 0(n)
-
-    // hash firstSeen & prefix sum 
-
-    let table = {}
-
-    for(let i=0; i<arr.length; i++) {
-        table[i] = ( table[i-1] || 0 ) + arr[i]
-    }
-
-    console.log(table)
-
-    // has property don't have in hash table or object, So it can be easily done with hashMap
-    
-}
-
-
+// prefix-sum approach
 function largestSubArrayOfSumKII(arr, k) {
 
     let firstSeen = new Map()
@@ -106,11 +90,41 @@ function largestSubArrayOfSumKII(arr, k) {
 
 
 
-let arr = [15, -2, 2, -8, 1, 7, 10, 23]
+// work for postive integer array only - sliding window approach
+function largestSubArrayWithSumk(arr, k) {
+
+    let maxLen = 0, left = 0, currSum = 0
+
+    for(let right=0; right<arr.length; right++) {
+
+        currSum += arr[right]
+
+        while(currSum > k) {
+            currSum -= arr[left++]
+        }
+
+        if(currSum == k) {
+            maxLen = Math.max(maxLen, right - left + 1)
+        }
+
+    }
+
+    return maxLen
+
+}
+
+
+
+// let arr = [15, -2, 2, -8, 1, 7, 10, 23]
 // arr = [-31, -48, -90, 54, 20, 95, 6, -86, 22] // Output -> 6
 // arr = [2, 10, 4]
 // arr = [1, 0, -4, 3, 1, 0]
-let k = 17
-const res = largestSubArrayOfSumKII(arr, k)
+// let k = 17
+
+
+let arr = [1, 2, 3, 10, 5, 6, 4, 15]
+const k = 15
+
+const res = largestSubArrayWithSumk(arr, k)
 console.log(res)
 
