@@ -78,12 +78,12 @@ const numbers = [['1', '2'], ['3', '4', ['5', ['6'], '7']]]
 // console.log(arr)
 
 
-// const arr = nestedArray.myFlat()
-// console.log(arr)
+const arr = nestedArray.myFlat()
+console.log(arr)
 
 
-const arrnew = flatFunctionIterative(nestedArray)
-console.log(arrnew)
+// const arrnew = flatFunctionIterative(nestedArray)
+// console.log(arrnew)
 
 
 
