@@ -31,6 +31,7 @@ function swap(ele1, ele2, nums) {
 }
 
 
+// [1,2,3]
 function solve(nums, ans, index) {
 
     //base case

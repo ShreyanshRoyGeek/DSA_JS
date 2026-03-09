@@ -84,7 +84,7 @@ function twoSumII(arr, target) {
         const diff =  target - arr[i]
         
         if(table[diff] !== undefined) {
-            console.log([i, table[diff]]) // index
+            console.log([table[diff], i]) // index
             return true
         }
 
@@ -97,7 +97,27 @@ function twoSumII(arr, target) {
 
 
 
-let arr = [0, -1, 2, -3, 1]
+function twoSumIII(arr, target) {
+
+    let map = new Map()
+    let res = []
+
+    for(let i=0; i<arr.length; i++) {
+
+        const diff = target - arr[i]
+
+        if(map.has(diff)) {
+            const prevIndx = map.get(diff)
+            res.push([arr[prevIndx], arr[i]])
+        }
+
+        map.set(arr[i], i)
+    }
+
+    return res
+}
+
+let arr = [0, -1, 2, -3, 1, -3, -1]
 let target = -2
 
 // let arr = [1, -2, 1, 0, 5]
@@ -106,7 +126,7 @@ let target = -2
 // let arr = [11]
 // let target = 11
 
-const res = twoSumI(arr, target)
+const res = twoSumIII(arr, target)
 console.log(res)
 
 

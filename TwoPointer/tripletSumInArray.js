@@ -105,9 +105,134 @@ function hasTripletSumII(arr, target) {
 
 }
 
-// let arr = [1, 4, 45, 6, 10, 8]
-let arr = [-1, 0, 1, 2, -1, -4]
+
+function hasTripletSumIII(arr, target) {
+
+    let res = []
+
+    for (let i = 0; i < arr.length; i++) {
+
+        let map = new Map()
+
+        for (let j = i + 1; j < arr.length; j++) {
+
+            const diff = target - (arr[i] + arr[j])
+
+            if (map.has(diff)) {
+                res.push([arr[i], diff, arr[j]])
+                // return true
+            }
+
+            map.set(arr[j])
+        }
+
+    }
+
+    return res
+}
+
+
+function hasTripletSumIV(arr, target) {
+
+    arr = arr.sort((a, b) => a - b)
+
+    let res = []
+
+    for (let i = 0; i < arr.length - 2; i++) {
+
+        let l = i + 1, r = arr.length - 1
+
+        while (l < r) {
+
+            const sum = arr[i] + arr[l] + arr[r]
+
+            if (sum == target) {
+                res.push([arr[i], arr[l], arr[r]])
+                l++, r--
+            }
+
+            else if (sum > target) {
+                r--
+            }
+
+            else if (sum < target) {
+                l++
+            }
+        }
+
+    }
+
+    // for removing duplicates entries
+    let temp = []
+
+    res = res.filter((ele) => {
+
+        const elemStr = [...ele].join(',')
+
+        if(temp.indexOf(elemStr) == -1) {
+            temp.push(elemStr)
+            return true
+        }
+        else {
+            return false
+        }
+        
+    })
+
+    return res
+}
+
+
+function hasTripletSumV(arr, target) {
+
+    arr = arr.sort((a, b) => a - b);
+    
+    // console.log('arr', arr)
+
+    let res = [];
+
+    for (let i = 0; i < arr.length - 2; i++) {
+        // Optimization: If the current smallest number is > 0, 
+        // no three numbers can sum to 0.
+        if (arr[i] > 0) break;
+
+        // SKIP DUPLICATES for the first element
+        if (i > 0 && arr[i] === arr[i - 1]) continue;
+
+        let l = i + 1, r = arr.length - 1;
+
+        while (l < r) {
+            const sum = arr[i] + arr[l] + arr[r];
+
+            if (sum === target) {
+                res.push([arr[i], arr[l], arr[r]]);
+
+                // SKIP DUPLICATES for the second and third elements
+                while (l < r && arr[l] === arr[l + 1]) l++;
+                while (l < r && arr[r] === arr[r - 1]) r--;
+
+                l++;
+                r--;
+            } 
+            else if (sum > target) {
+                r--;
+            } 
+            else {
+                l++;
+            }
+        }
+    }
+
+    return res;
+}
+
+
+// let arr = [1, 4, 45, 6, 10, 8, 20, 1, 1]
 // let target = 22
+
+let arr = [-1, 0, 1, 2, -1, -4]
 let target = 0
-const res = hasTripletSumII(arr, target)
+
+const res = hasTripletSumV(arr, target)
 console.log(res)
+

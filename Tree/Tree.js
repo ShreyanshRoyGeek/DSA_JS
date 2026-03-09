@@ -85,7 +85,7 @@ function getSize(node) {
 
     let left = getSize(node.left)
 
-    let right = getSize(node.roght)
+    let right = getSize(node.right)
 
     return left + right + 1 
 
