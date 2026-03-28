@@ -19,6 +19,7 @@
 */
 
 
+// Memoization 
 var rob = function(nums) {
     const dp = new Array(nums.length).fill(-1)
     return amount(nums, 0, dp)
@@ -26,11 +27,33 @@ var rob = function(nums) {
 
 var amount = function(nums, i,dp) {
     if(i >= nums.length) return 0 
+
     if(dp[i] !== -1) return dp[i]
+
     const take = nums[i] + amount(nums, i+2, dp)
     const notTake = amount(nums, i+1, dp)
+
     return dp[i] = Math.max(take, notTake)
 };
+
+
+// Tabulation
+var rob = function(nums) {
+
+    const n = nums.length
+    const dp = new Array(n).fill(-1)
+
+    dp[0] = nums[0]
+    dp[1] = Math.max(nums[0], nums[1])
+
+    for(let i=2; i<n; i++) {
+        dp[i] = Math.max((dp[i-2] + nums[i]), dp[i-1])
+    }
+
+    return dp[n-1]
+};
+
+
 
 // let nums = [1,2,3,1]
 let nums = [2,7,9,3,1]
