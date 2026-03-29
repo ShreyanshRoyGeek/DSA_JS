@@ -39,26 +39,26 @@
 function solve(str, ans, indx) {
 
     //base case
-    if(indx >= str.length) {
-        
+    if (indx >= str.length) {
+
         str = str.join('')
         ans.push([str])
         return
     }
-    
-    for(let j=indx; j<str.length; j++) {
-        
+
+    for (let j = indx; j < str.length; j++) {
+
         swap(indx, j, str)
-        solve(str, ans, indx+1)
-      
+        solve(str, ans, indx + 1)
+
         //backtrack
         swap(indx, j, str)
-        
+
     }
-    
-}   
-    
-    
+
+}
+
+
 function swap(ind1, ind2, str) {
 
     let temp = str[ind1]
@@ -71,7 +71,8 @@ function swap(ind1, ind2, str) {
 function premutation(str) {
 
     str = str.split('').sort()
-            
+    console.log('str', str);
+
     let ans = []
     let indx = 0
     solve(str, ans, indx)
@@ -90,7 +91,7 @@ function premutation(str) {
         return a.length - b.length
     })
     */
-    
+
     return ans.sort()
 
 }

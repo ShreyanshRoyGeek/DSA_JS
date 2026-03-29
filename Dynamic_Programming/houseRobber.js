@@ -19,7 +19,7 @@
 */
 
 
-// Memoization 
+// Memoization - top down dp
 var rob = function(nums) {
     const dp = new Array(nums.length).fill(-1)
     return amount(nums, 0, dp)
@@ -37,7 +37,7 @@ var amount = function(nums, i,dp) {
 };
 
 
-// Tabulation
+// Tabulation - bottom up dp
 var rob = function(nums) {
 
     const n = nums.length

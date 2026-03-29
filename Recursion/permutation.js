@@ -20,10 +20,12 @@ function findPermutation(arr, index, res) {
 
     for (let i = index; i < arr.length; i++) {
 
+        // swap
         [arr[index], arr[i]] = [arr[i], arr[index]];
 
         findPermutation(arr, index + 1, res);
-
+        
+        // backtrack
         [arr[index], arr[i]] = [arr[i], arr[index]];
 
 

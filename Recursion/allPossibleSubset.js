@@ -36,10 +36,31 @@ function solve(nums, index, output, resArr) {
 
     //include
     output.push(nums[index])
-    solve(nums, index + 1, output, resArr)
+        solve(nums, index + 1, output, resArr)
 
 
     //backtracking
+    output.pop()
+
+}
+
+
+function solveII(nums, indx, output, resArr) {
+
+    // base case
+    if(indx == nums.length) {
+        resArr.push([...output])
+        return 
+    }
+
+    // exclude
+    solveII(nums, indx+1, output, resArr)
+
+    // include
+    output.push(nums[indx])
+    solveII(nums, indx+1, output, resArr)
+
+    // backtrack
     output.pop()
 
 }
@@ -53,7 +74,7 @@ let resArr = []
 let output = []
 let index = 0
 
-solve(nums, index, output, resArr)
+solveII(nums, index, output, resArr)
 console.log('resArr', resArr)
 
 
