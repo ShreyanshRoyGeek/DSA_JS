@@ -18,7 +18,7 @@
     Explanation: For an array with all positive elements, the result is product of all elements. 
     Output: 24 
 
-    Input: arr[] = [-2 0 -1]
+    Input: arr[] = [-2, 0, -1]
     Output: 0
 
     Constraints:
