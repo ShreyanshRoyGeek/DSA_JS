@@ -164,10 +164,15 @@ function hasTripletSumIV(arr, target) {
 
     // for removing duplicates entries
     let temp = []
+    // [[1,2,3], [1,2,3], [1,3,5]]
 
     res = res.filter((ele) => {
 
+        console.log('ele', ele)
+
         const elemStr = [...ele].join(',')
+
+        console.log('elemStr', elemStr)
 
         if(temp.indexOf(elemStr) == -1) {
             temp.push(elemStr)
@@ -186,7 +191,6 @@ function hasTripletSumIV(arr, target) {
 function hasTripletSumV(arr, target) {
 
     arr = arr.sort((a, b) => a - b);
-    
     // console.log('arr', arr)
 
     let res = [];

@@ -1,5 +1,5 @@
 /*
-    Longest Repeating Character Replacement --> (Medium)
+    424. Longest Repeating Character Replacement --> (Medium)
 
     You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.
     Return the length of the longest substring containing the same letter you can get after performing the above operations.
@@ -55,6 +55,63 @@ function longestRepeatingCharacterReplacement(str, k) {
     return maxWindow
 
 }
+
+
+
+function longestRepeatingCharacterReplacementI(str, k) {
+
+    let freq = {}
+
+    let left = 0, maxFreq = 0, maxWindow = 0
+
+    for(let right=0; right<str.length; right++) {
+
+        freq[str[right]] = ( freq[str[right]] | 0 ) + 1
+
+        maxFreq = Math.max(maxFreq, freq[str[right]])
+        let windowLen = right - left + 1
+
+        if((windowLen - maxFreq) > k) {
+            freq[str[left]]--
+            left++
+        }   
+
+        windowLen = right - left + 1
+
+        maxWindow = Math.max(windowLen, maxWindow)
+    }   
+
+    return maxWindow
+
+}
+
+
+function longestRepeatingCharacterReplacementII(str, k) {
+
+    let freq = new Map()
+
+    let left = 0, maxFreq = 0, maxWindow = 0
+
+    for(let right=0; right<str.length; right++) {
+
+        freq.set(str[right], ( freq.get(str[right]) | 0 ) + 1)
+
+        maxFreq = Math.max(maxFreq, freq.get(str[right]))
+        let windowLen = right - left + 1
+
+        if((windowLen - maxFreq) > k) {
+            freq.set(str[left], freq.get(str[left]) - 1)
+            left++
+        }   
+
+        windowLen = right - left + 1
+        maxWindow = Math.max(windowLen, maxWindow)
+    }
+
+    return maxWindow
+
+}
+
 
 
 // let s = "ABAB"
