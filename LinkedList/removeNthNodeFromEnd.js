@@ -67,8 +67,7 @@ function removeNthNodeFromEndI(head, n) {
     // if head is the nth node from end 
     if (k - n === 0) return head.next;
     
-    // Reach the node just before
-    // the target node.
+    // Reach the node just before the target node.
     curr = head;
     for (let i = 1; i < k - n; i++) {
         curr = curr.next;
@@ -82,6 +81,7 @@ function removeNthNodeFromEndI(head, n) {
 }
 
 
+// Two pointer approach
 function removeNthNodeFromEndII(head, n) {
 
     let fast = head
