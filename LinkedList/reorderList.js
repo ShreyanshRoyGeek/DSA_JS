@@ -44,3 +44,80 @@ function reorderList(head) { // Not completed
     return newNode
 
 }
+
+
+function reorderListI(head) {
+
+    if (!head || !head.next) return head
+
+    // Step 1: Convert linked list to array of nodes
+    let nodes = []
+    let curr = head
+    while (curr) {
+        nodes.push(curr)
+        curr = curr.next
+    }
+
+    // Step 2: Use two pointers - one at start, one at end
+    let i = 0
+    let j = nodes.length - 1
+    let dummy = { val: 0, next: null }
+    let prev = dummy
+
+    // Step 3: Alternately link nodes from both ends
+    while (i < j) {
+        prev.next = nodes[i]      // Link node from start
+        nodes[i].next = nodes[j]  // Link node from end
+        prev = nodes[j]
+        i++
+        j--
+    }
+
+    // Step 4: Handle odd-length list (middle element)
+    if (i === j) {
+        prev.next = nodes[i]      // Link the middle node
+        nodes[i].next = null
+    } else {
+        prev.next = null           // Even length - terminate here
+    }
+
+    return dummy.next
+}
+
+
+function reorderListII(head) {
+
+    if(head || !head.next) return head
+    
+    let nodes = []
+    let curr = head
+
+    while(curr) {
+        nodes.push(curr.val)
+        curr = curr.next
+    }
+
+    let i = 0, j = nodes.length - 1
+    let dummy = { val : 0, next : null }
+    let prev = dummy
+
+    while(i < j) {
+        prev.next = nodes[i]
+        nodes[i].next = nodes[j]
+        prev = nodes[j]
+        i++, j--
+    }
+
+    if(i == j) {
+        prev.next = nodes[i]
+        nodes[i].next = null
+    }
+    else {
+        prev.next = null
+    }
+
+    return dummy.next
+
+}
+
+
