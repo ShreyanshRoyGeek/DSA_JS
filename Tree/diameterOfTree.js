@@ -46,13 +46,15 @@ function diameterOfTheTree(root) {  // O(n*n) - time
 
 
 function diameterOfTheTreeI(root) { // O(n) - time
+
+    let ans = 0
     
     function heightModified(node) {
 
         if(!node) return 0
 
-        let leftHt = height(node.left)
-        let rightHt = height(node.right)
+        let leftHt = heightModified(node.left)
+        let rightHt = heightModified(node.right)
 
         ans = Math.max(ans, leftHt + rightHt)
 
@@ -60,11 +62,7 @@ function diameterOfTheTreeI(root) { // O(n) - time
 
     }
 
-    let ans = 0
-
     heightModified(root)
-
     return ans
 
 }
-
